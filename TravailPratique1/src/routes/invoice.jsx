@@ -13,7 +13,6 @@ const Vue4 = () => {
       </Card.Header>
       <Card.Body>
         <Payment />
-        <ListGroup></ListGroup>
       </Card.Body>
     </Card>
   );

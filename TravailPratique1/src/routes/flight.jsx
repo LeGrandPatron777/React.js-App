@@ -1,6 +1,7 @@
 import React from "react";
 import SearchFlights from "../components/searchFlights";
-import { Card, Container } from "react-bootstrap";
+import { Card, Container, ListGroup } from "react-bootstrap";
+import FlightInfo from "../components/flightInfo";
 
 const Vue2 = () => {
   return (
@@ -8,6 +9,9 @@ const Vue2 = () => {
       <Card>
         <Card.Body>
           <SearchFlights />
+          <ListGroup>
+            <FlightInfo />
+          </ListGroup>
         </Card.Body>
       </Card>
     </Container>

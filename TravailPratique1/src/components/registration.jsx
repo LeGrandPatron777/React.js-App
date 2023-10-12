@@ -31,7 +31,7 @@ const Registration = () => {
     dispatch(registerUser(formData));
     console.log("User registered:", formData);
 
-    // Réinitialiser formData ujèkhy-hyèh
+    // Réinitialiser formData
     setFormData({
       nom: "",
       prenom: "",

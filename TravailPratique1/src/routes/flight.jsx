@@ -1,17 +1,14 @@
 import React from "react";
 import SearchFlights from "../components/searchFlights";
 import { Card, Container, ListGroup } from "react-bootstrap";
-import FlightInfo from "../components/flightInfo";
+import SearchAndDisplayFlights from "../components/searchAndDisplayFlights";
 
 const Vue2 = () => {
   return (
     <Container className="mt-5">
       <Card>
         <Card.Body>
-          <SearchFlights />
-          <ListGroup>
-            <FlightInfo />
-          </ListGroup>
+          <SearchAndDisplayFlights />
         </Card.Body>
       </Card>
     </Container>

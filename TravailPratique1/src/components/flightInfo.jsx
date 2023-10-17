@@ -3,21 +3,28 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const FlightInfo = () => {
-  const [flights, setFlights] = useState({}); // Initialisez avec un objet vide
-  const [dates, setDates] = useState([]);
+  const [flights, setFlights] = useState({});
+  const [currency, setCurrency] = useState("");
+  const [destinationKey, setDestinationKey] = useState(null);
 
   const token = "6ccf4da559f0777e5a5c543cd67ca555";
+  const origin = "YUL";
+  const destination = "CDG";
+  const depart_date = "2023-11-09";
+  const return_date = "2023-12-06";
 
   useEffect(() => {
     axios
       .get(
-        `/api/v1/prices/calendar?origin=YUL&destination=CDG&depart_date=2023-11&return_date=2023-12&token=${token}&currency=CAD`
+        `/api/v1/prices/cheap?origin=${origin}&destination=${destination}&depart_date=${depart_date}&return_date=${return_date}&page=1&currency=CAD&token=${token}`
       )
       .then((res) => {
         if (res.data && res.data.data) {
-          // Vérifiez que les données existent avant de les utiliser
-          setDates(Object.keys(res.data.data));
+          setDestinationKey(Object.keys(res.data.data)[0]);
           setFlights(res.data.data);
+          if (res.data.currency) {
+            setCurrency(res.data.currency);
+          }
         }
       })
       .catch((err) => {
@@ -25,27 +32,42 @@ const FlightInfo = () => {
       });
   }, []);
 
-  return dates.map((date) => {
-    const flight = flights[date];
+  if (!destinationKey || !flights[destinationKey]) {
+    return <div>Chargement des informations de vol...</div>;
+  }
 
-    if (flight) {
-      // Assurez-vous que l'objet de vol existe avant d'y accéder
-      return (
-        <div key={date}>
+  return (
+    <div>
+      {Object.values(flights[destinationKey]).map((flightData) => (
+        <div key={flightData.departure_at}>
           <p>
-            <b>{date}</b>
+            <b>Départ:</b>{" "}
+            {flightData.departure_at &&
+              new Date(flightData.departure_at).toLocaleDateString()}{" "}
+            {flightData.departure_at &&
+              new Date(flightData.departure_at).toLocaleTimeString()}
           </p>
           <p>
-            <span>{flight.origin}</span> to <span>{flight.destination}</span>
+            <b>Retour:</b>{" "}
+            {flightData.return_at &&
+              new Date(flightData.return_at).toLocaleDateString()}{" "}
+            {flightData.return_at &&
+              new Date(flightData.return_at).toLocaleTimeString()}
           </p>
-          <p>{flight.price} CAD</p>
+          <p>
+            <b>Compagnie aérienne:</b> {flightData.airline}
+          </p>
+          <p>
+            <b>Numéro de vol:</b> {flightData.flight_number}
+          </p>
+          <p>
+            {flightData.price} {currency}
+          </p>
           <hr />
         </div>
-      );
-    } else {
-      return null; // Renvoyez null si l'objet de vol n'existe pas pour cette date
-    }
-  });
+      ))}
+    </div>
+  );
 };
 
 export default FlightInfo;

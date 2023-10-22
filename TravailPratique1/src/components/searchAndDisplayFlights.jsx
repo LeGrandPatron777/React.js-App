@@ -37,7 +37,7 @@ const SearchAndDisplayFlights = () => {
     e.preventDefault();
     axios
       .get(
-        `/api/v1/prices/cheap?origin=${formData.departureAirport}&destination=${formData.arrivalAirport}&depart_date=${formData.departureDate}&return_date=${formData.returnDate}&page=1&currency=CAD&token=${token}`
+        `/api/travelpayouts/v1/prices/cheap?origin=${formData.departureAirport}&destination=${formData.arrivalAirport}&depart_date=${formData.departureDate}&return_date=${formData.returnDate}&page=1&currency=CAD&token=${token}`
       )
       .then((res) => {
         if (res.data && res.data.data) {

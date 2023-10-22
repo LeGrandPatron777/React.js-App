@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "../actions/currentUserActions";
 import { FaEnvelope, FaLock } from "react-icons/fa"; // Import des icônes
 
-const Connection = ({ onLogin }) => {
+const Connection = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,9 +16,9 @@ const Connection = ({ onLogin }) => {
     const user = users.find(
       (u) => u.email === email && u.password === password
     );
+
     if (user) {
       alert("Vous etes connectés");
-      onLogin(user);
       dispatch(setCurrentUser(user));
     } else {
       alert("Adresse e-mail ou mot de passe incorrect.");

@@ -1,9 +1,13 @@
-import { REGISTER_USER } from "./actions/actionTypes";
-import { SET_CURRENT_USER } from "./actions/actionTypes";
+import { REGISTER_USER, SET_CURRENT_USER } from "./actions/actionTypes";
 
 const initialState = {
   users: [],
-  currentUser: null,
+  currentUser: {
+    nom: "Nom par défaut",
+    prenom: "Prénom par défaut",
+    email: "email@defaut.com",
+    dateDeNaissance: "01/01/2000",
+  },
 };
 
 const userReducer = (state = initialState, action) => {

@@ -5,8 +5,7 @@ import { Card, ListGroup } from "react-bootstrap";
 const Vue4 = () => {
   return (
     <Card>
-      <Card.Header as="h5">
-        {" "}
+      <Card.Header>
         <h1>
           <strong>Paiement</strong>
         </h1>

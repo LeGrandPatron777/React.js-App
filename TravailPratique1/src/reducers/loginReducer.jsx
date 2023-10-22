@@ -1,13 +1,13 @@
-import { REGISTER_USER, SET_CURRENT_USER } from "./actions/actionTypes";
+import {
+  REGISTER_USER,
+  SET_CURRENT_USER,
+  LOGOUT_USER,
+  UPDATE_CURRENT_USER,
+} from "../actions/actionTypes";
 
 const initialState = {
   users: [],
-  currentUser: {
-    nom: "Nom par défaut",
-    prenom: "Prénom par défaut",
-    email: "email@defaut.com",
-    dateDeNaissance: "01/01/2000",
-  },
+  currentUser: null,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -21,6 +21,19 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         currentUser: action.payload,
+      };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        currentUser: null,
+      };
+    case UPDATE_CURRENT_USER:
+      return {
+        ...state,
+        currentUser: action.payload,
+        users: state.users.map((user) =>
+          user.email === action.payload.email ? action.payload : user
+        ),
       };
     default:
       return state;

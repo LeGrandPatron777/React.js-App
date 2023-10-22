@@ -30,7 +30,7 @@ const SearchAndDisplayHotel = () => {
     const { location, checkInDate, checkOutDate } = formData;
     axios
       .get(
-        `/api/hotellook/v2/cache.json?location=${location}&checkIn=${checkInDate}&checkOut=${checkOutDate}&currency=${currency}&token=${token}`
+        `/api/hotellook/v2/cache.json?location=${location}&checkIn=${checkInDate}&checkOut=${checkOutDate}&currency=${currency}&token=${token}&limit=10`
       )
       .then((res) => {
         setHotels(res.data);
@@ -112,11 +112,10 @@ const SearchAndDisplayHotel = () => {
           hotels.map((hotel, index) => (
             <div key={index}>
               <h1>{hotel.hotelName}</h1>
-              <p>Location: {hotel.location.name}</p>
-              <p>Country: {hotel.location.country}</p>
-              <p>Price from: {hotel.priceFrom}</p>
-              <p>Average price: {hotel.priceAvg}</p>
-              <p>Stars: {hotel.stars}</p>
+              <p>Lieu : {hotel.location.name}</p>
+              <p>Pays : {hotel.location.country}</p>
+              <p>Prix Total: {hotel.priceFrom}</p>
+              <p>Etoile : {hotel.stars}</p>
               <hr />
             </div>
           ))

@@ -1,7 +1,13 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FaSignInAlt, FaPlane, FaHotel, FaCreditCard } from "react-icons/fa";
+import {
+  FaSignInAlt,
+  FaPlane,
+  FaHotel,
+  FaCreditCard,
+  FaUserEdit,
+} from "react-icons/fa";
 
 const NavigationBar = () => {
   return (
@@ -21,6 +27,9 @@ const NavigationBar = () => {
           </Nav.Link>
           <Nav.Link as={Link} to="/vue4">
             <FaCreditCard className="mr-1" /> Payment
+          </Nav.Link>
+          <Nav.Link as={Link} to="/vue5">
+            <FaUserEdit className="mr-1" /> Update
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>

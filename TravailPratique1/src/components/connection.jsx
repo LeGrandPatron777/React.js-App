@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
+import { Form, Button, Row, Alert } from "react-bootstrap"; // Import de Alert
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "../actions/currentUserActions";
 import { FaEnvelope, FaLock } from "react-icons/fa"; // Import des icônes
@@ -7,6 +7,7 @@ import { FaEnvelope, FaLock } from "react-icons/fa"; // Import des icônes
 const Connection = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
   const users = useSelector((state) => state.user.users);
@@ -18,10 +19,9 @@ const Connection = () => {
     );
 
     if (user) {
-      alert("Vous etes connectés");
       dispatch(setCurrentUser(user));
     } else {
-      alert("Adresse e-mail ou mot de passe incorrect.");
+      setMessage("Adresse e-mail ou mot de passe incorrect.");
     }
     setEmail("");
     setPassword("");
@@ -29,6 +29,7 @@ const Connection = () => {
 
   return (
     <Row className="justify-content-md-center">
+      {message && <Alert variant="danger">{message}</Alert>}
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label>Adresse courriel</Form.Label>

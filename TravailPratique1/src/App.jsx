@@ -3,9 +3,11 @@ import Vue1 from "./routes/login";
 import Vue2 from "./routes/flight";
 import Vue3 from "./routes/hotel";
 import Vue4 from "./routes/invoice";
+import Vue5 from "./routes/update";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NavigationBar from "./components/navigationBar";
+import Footer from "./components/footer";
 
 function App() {
   return (
@@ -16,9 +18,10 @@ function App() {
         <Route path="/vue2" element={<Vue2 />} />
         <Route path="/vue3" element={<Vue3 />} />
         <Route path="/vue4" element={<Vue4 />} />
+        <Route path="/vue5" element={<Vue5 />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }
-
 export default App;

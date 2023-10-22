@@ -5,31 +5,8 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import App from "./App";
 import thunk from "redux-thunk";
 
-// ActionTypes
-export const REGISTER_USER = "REGISTER_USER";
-
-// ActionCreators
-export const registerUser = (userData) => ({
-  type: REGISTER_USER,
-  payload: userData,
-});
-
-// User Reducer
-const initialState = {
-  users: [],
-};
-
-const userReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case REGISTER_USER:
-      return {
-        ...state,
-        users: [...state.users, action.payload],
-      };
-    default:
-      return state;
-  }
-};
+// Import User Reducer
+import userReducer from "./reducers/loginReducer";
 
 // Another Reducer
 const anotherInitialState = {};

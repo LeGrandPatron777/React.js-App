@@ -37,7 +37,7 @@ const SearchAndDisplayFlights = () => {
     e.preventDefault();
     axios
       .get(
-        `/api/travelpayouts/v1/prices/cheap?origin=${formData.departureAirport}&destination=${formData.arrivalAirport}&depart_date=${formData.departureDate}&return_date=${formData.returnDate}&page=1&currency=CAD&token=${token}`
+        `/api/travelpayouts/v1/prices/cheap?origin=${formData.departureAirport}&destination=${formData.arrivalAirport}&depart_date=${formData.departureDate}&return_date=${formData.returnDate}&currency=CAD&token=${token}`
       )
       .then((res) => {
         if (res.data && res.data.data) {
@@ -164,6 +164,12 @@ const SearchAndDisplayFlights = () => {
         {destinationKey && flights[destinationKey] ? (
           Object.values(flights[destinationKey]).map((flightData) => (
             <div key={flightData.departure_at}>
+              <p>
+                <b>Origine:</b> {formData.departureAirport}
+              </p>
+              <p>
+                <b>Destination:</b> {formData.arrivalAirport}
+              </p>
               <p>
                 <b>Départ:</b>{" "}
                 {flightData.departure_at &&

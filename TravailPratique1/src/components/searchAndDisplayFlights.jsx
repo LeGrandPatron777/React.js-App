@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import {
+  Form,
+  Button,
+  Container,
+  Row,
+  Col,
+  Card,
+  Alert,
+} from "react-bootstrap";
 import {
   FaPlaneDeparture,
   FaPlaneArrival,
@@ -8,6 +17,7 @@ import {
   FaUser,
   FaChair,
 } from "react-icons/fa";
+import { registerReservation } from "../actions/reservationAction";
 
 const SearchAndDisplayFlights = () => {
   const [formData, setFormData] = useState({
@@ -22,6 +32,8 @@ const SearchAndDisplayFlights = () => {
   const [flights, setFlights] = useState({});
   const [currency, setCurrency] = useState("");
   const [destinationKey, setDestinationKey] = useState(null);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   const token = "6ccf4da559f0777e5a5c543cd67ca555";
 
@@ -31,6 +43,17 @@ const SearchAndDisplayFlights = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const dispatch = useDispatch();
+
+  const handleReservation = (flightData) => {
+    dispatch(registerReservation(flightData));
+    setShowAlert(true);
+    setAlertMessage(
+      `Vol réservé avec succès!\n\nCompagnie aérienne: ${flightData.airline}\nNuméro de vol: ${flightData.flight_number}\nPrix: ${flightData.price}\nOrigine: ${formData.departureAirport}\nDestination: ${formData.arrivalAirport}`
+    );
+    console.log(flightData);
   };
 
   const handleSubmit = (e) => {
@@ -69,6 +92,7 @@ const SearchAndDisplayFlights = () => {
                 name="departureAirport"
                 value={formData.departureAirport}
                 onChange={handleInputChange}
+                required
               />
             </Form.Group>
           </Col>
@@ -82,6 +106,7 @@ const SearchAndDisplayFlights = () => {
                 name="arrivalAirport"
                 value={formData.arrivalAirport}
                 onChange={handleInputChange}
+                required
               />
             </Form.Group>
           </Col>
@@ -98,6 +123,7 @@ const SearchAndDisplayFlights = () => {
                 name="departureDate"
                 value={formData.departureDate}
                 onChange={handleInputChange}
+                required
               />
             </Form.Group>
           </Col>
@@ -111,6 +137,7 @@ const SearchAndDisplayFlights = () => {
                 name="returnDate"
                 value={formData.returnDate}
                 onChange={handleInputChange}
+                required
               />
             </Form.Group>
           </Col>
@@ -128,6 +155,7 @@ const SearchAndDisplayFlights = () => {
                 min="1"
                 value={formData.passengers}
                 onChange={handleInputChange}
+                required
               />
             </Form.Group>
           </Col>
@@ -160,47 +188,44 @@ const SearchAndDisplayFlights = () => {
         </div>
       </Form>
 
+      {showAlert && (
+        <Alert
+          variant="success"
+          onClose={() => setShowAlert(false)}
+          dismissible
+        >
+          {alertMessage}
+        </Alert>
+      )}
+
       <div className="mt-4">
         {destinationKey && flights[destinationKey] ? (
           Object.values(flights[destinationKey]).map((flightData) => (
             <Card key={flightData.departure_at} className="mb-3">
               <Card.Body>
-                <Card.Title>{flightData.airline}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">
-                  Numéro de vol: {flightData.flight_number}
+                <Card.Title>
+                  {flightData.airline} - Vol {flightData.flight_number}
+                </Card.Title>
+                <Card.Subtitle>
+                  De {formData.departureAirport} à {formData.arrivalAirport}
                 </Card.Subtitle>
                 <Card.Text>
-                  <p>
-                    <b>Origine:</b> {formData.departureAirport}
-                  </p>
-                  <p>
-                    <b>Destination:</b> {formData.arrivalAirport}
-                  </p>
-                  <p>
-                    <b>Départ:</b>{" "}
-                    {flightData.departure_at &&
-                      new Date(
-                        flightData.departure_at
-                      ).toLocaleDateString()}{" "}
-                    {flightData.departure_at &&
-                      new Date(flightData.departure_at).toLocaleTimeString()}
-                  </p>
-                  <p>
-                    <b>Retour:</b>{" "}
-                    {flightData.return_at &&
-                      new Date(flightData.return_at).toLocaleDateString()}{" "}
-                    {flightData.return_at &&
-                      new Date(flightData.return_at).toLocaleTimeString()}
-                  </p>
-                  <p>
-                    {flightData.price} {currency}
-                  </p>
+                  Départ: {flightData.departure_at} - Arrivée:{" "}
+                  {flightData.return_at}
+                  <br />
+                  Prix: {flightData.price} {currency}
                 </Card.Text>
+                <Button
+                  variant="dark"
+                  onClick={() => handleReservation(flightData)}
+                >
+                  Réserver
+                </Button>
               </Card.Body>
             </Card>
           ))
         ) : (
-          <div>...</div>
+          <div></div>
         )}
       </div>
     </Container>

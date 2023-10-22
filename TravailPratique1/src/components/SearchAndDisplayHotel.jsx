@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import {
   FaHotel,
@@ -23,6 +24,11 @@ const SearchAndDisplayHotel = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const dispatch = useDispatch();
+  const handleReservation = (flightData) => {
+    //dispatch(setFlightData(flightData));
   };
 
   const handleSearch = (e) => {
@@ -121,6 +127,9 @@ const SearchAndDisplayHotel = () => {
                   <p>Pays : {hotel.location.country}</p>
                   <p>Prix Total: {hotel.priceFrom}</p>
                 </Card.Text>
+                <Button variant="dark" onClick={() => handleReservation(hotel)}>
+                  Réserver
+                </Button>
               </Card.Body>
             </Card>
           ))

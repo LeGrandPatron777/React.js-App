@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import {
   FaHotel,
   FaCalendarCheck,
@@ -46,7 +46,7 @@ const SearchAndDisplayHotel = () => {
       <Form onSubmit={handleSearch}>
         <Row>
           <Col md={6}>
-            <Form.Group>
+            <Form.Group className="mb-3">
               <Form.Label>
                 <FaHotel /> Lieu
               </Form.Label>
@@ -59,7 +59,7 @@ const SearchAndDisplayHotel = () => {
             </Form.Group>
           </Col>
           <Col md={3}>
-            <Form.Group>
+            <Form.Group className="mb-3">
               <Form.Label>
                 <FaCalendarCheck /> Date d'entrée
               </Form.Label>
@@ -72,7 +72,7 @@ const SearchAndDisplayHotel = () => {
             </Form.Group>
           </Col>
           <Col md={3}>
-            <Form.Group>
+            <Form.Group className="mb-3">
               <Form.Label>
                 <FaCalendarTimes /> Date de sortie
               </Form.Label>
@@ -87,7 +87,7 @@ const SearchAndDisplayHotel = () => {
         </Row>
         <Row>
           <Col md={6}>
-            <Form.Group>
+            <Form.Group className="mb-3">
               <Form.Label>
                 <FaUsers /> Nombre de personnes
               </Form.Label>
@@ -107,20 +107,25 @@ const SearchAndDisplayHotel = () => {
           </Button>
         </div>
       </Form>
-      <div>
+      <div className="mt-4">
         {hotels.length > 0 ? (
           hotels.map((hotel, index) => (
-            <div key={index}>
-              <h1>{hotel.hotelName}</h1>
-              <p>Lieu : {hotel.location.name}</p>
-              <p>Pays : {hotel.location.country}</p>
-              <p>Prix Total: {hotel.priceFrom}</p>
-              <p>Etoile : {hotel.stars}</p>
-              <hr />
-            </div>
+            <Card key={index} className="mb-3">
+              <Card.Body>
+                <Card.Title>{hotel.hotelName}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                  {hotel.stars} étoiles
+                </Card.Subtitle>
+                <Card.Text>
+                  <p>Lieu : {hotel.location.name}</p>
+                  <p>Pays : {hotel.location.country}</p>
+                  <p>Prix Total: {hotel.priceFrom}</p>
+                </Card.Text>
+              </Card.Body>
+            </Card>
           ))
         ) : (
-          <p>...</p>
+          <div>...</div>
         )}
       </div>
     </Container>

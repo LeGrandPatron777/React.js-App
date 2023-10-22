@@ -3,7 +3,13 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Form, Button, Container, Alert } from "react-bootstrap";
 import { updateCurrentUser } from "../actions/updateActions";
-import { FaUserEdit, FaUser, FaEnvelope, FaBirthdayCake } from "react-icons/fa";
+import {
+  FaUserEdit,
+  FaUser,
+  FaEnvelope,
+  FaBirthdayCake,
+  FaWallet,
+} from "react-icons/fa";
 
 const UpdateProfile = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
@@ -14,9 +20,10 @@ const UpdateProfile = () => {
     prenom: currentUser ? currentUser.prenom : "",
     dateDeNaissance: currentUser ? currentUser.dateDeNaissance : "",
     email: currentUser ? currentUser.email : "",
+    sold: currentUser ? currentUser.sold : "",
   });
 
-  const { nom, prenom, dateDeNaissance, email } = formData;
+  const { nom, prenom, dateDeNaissance, email, sold } = formData;
 
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
@@ -41,9 +48,9 @@ const UpdateProfile = () => {
     );
   } else {
     return (
-      <Container className="mt-4">
+      <Container className="mt-4 ">
         <h1 className="text-center mb-4">
-          <FaUserEdit className="mr-2" />
+          <FaUserEdit className="mr-5" />
           Mettez à Jour Votre Profil
         </h1>
         {showSuccessMessage && (
@@ -67,7 +74,7 @@ const UpdateProfile = () => {
             />
           </Form.Group>
 
-          <Form.Group controlId="formPrenom">
+          <Form.Group className="mt-2" controlId="formPrenom">
             <Form.Label>
               <FaUser className="mr-2" />
               Prénom
@@ -82,7 +89,7 @@ const UpdateProfile = () => {
             />
           </Form.Group>
 
-          <Form.Group controlId="formDateDeNaissance">
+          <Form.Group className="mt-2" controlId="formDateDeNaissance">
             <Form.Label>
               <FaBirthdayCake className="mr-2" />
               Date de Naissance
@@ -96,7 +103,7 @@ const UpdateProfile = () => {
             />
           </Form.Group>
 
-          <Form.Group controlId="formEmail">
+          <Form.Group className="mt-2" controlId="formEmail">
             <Form.Label>
               <FaEnvelope className="mr-2" />
               Email
@@ -111,7 +118,21 @@ const UpdateProfile = () => {
             />
           </Form.Group>
 
-          <Button variant="dark" type="submit">
+          <Form.Group className="mt-2" controlId="formSold">
+            <Form.Label>
+              <FaWallet className="mr-2" />
+              Solde
+            </Form.Label>
+            <Form.Control
+              type="number"
+              name="sold"
+              value={sold}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+
+          <Button className="mt-2" variant="dark" type="submit">
             Mettre à Jour
           </Button>
         </Form>

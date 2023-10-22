@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
 import {
   FaPlaneDeparture,
   FaPlaneArrival,
@@ -60,7 +60,7 @@ const SearchAndDisplayFlights = () => {
       <Form onSubmit={handleSubmit}>
         <Row>
           <Col md={6}>
-            <Form.Group>
+            <Form.Group className="mb-3">
               <Form.Label>
                 <FaPlaneDeparture /> Aéroport de départ
               </Form.Label>
@@ -73,7 +73,7 @@ const SearchAndDisplayFlights = () => {
             </Form.Group>
           </Col>
           <Col md={6}>
-            <Form.Group>
+            <Form.Group className="mb-3">
               <Form.Label>
                 <FaPlaneArrival /> Aéroport de destination
               </Form.Label>
@@ -89,7 +89,7 @@ const SearchAndDisplayFlights = () => {
 
         <Row>
           <Col md={6}>
-            <Form.Group>
+            <Form.Group className="mb-3">
               <Form.Label>
                 <FaCalendarAlt /> Date de départ
               </Form.Label>
@@ -102,7 +102,7 @@ const SearchAndDisplayFlights = () => {
             </Form.Group>
           </Col>
           <Col md={6}>
-            <Form.Group>
+            <Form.Group className="mb-3">
               <Form.Label>
                 <FaCalendarAlt /> Date de retour
               </Form.Label>
@@ -118,7 +118,7 @@ const SearchAndDisplayFlights = () => {
 
         <Row>
           <Col md={6}>
-            <Form.Group>
+            <Form.Group className="mb-3">
               <Form.Label>
                 <FaUser /> Nombre de passagers
               </Form.Label>
@@ -132,7 +132,7 @@ const SearchAndDisplayFlights = () => {
             </Form.Group>
           </Col>
           <Col md={6}>
-            <Form.Group className="mt-4">
+            <Form.Group className="mb-3 mt-4">
               <Form.Check
                 type="checkbox"
                 label={
@@ -163,38 +163,41 @@ const SearchAndDisplayFlights = () => {
       <div className="mt-4">
         {destinationKey && flights[destinationKey] ? (
           Object.values(flights[destinationKey]).map((flightData) => (
-            <div key={flightData.departure_at}>
-              <p>
-                <b>Origine:</b> {formData.departureAirport}
-              </p>
-              <p>
-                <b>Destination:</b> {formData.arrivalAirport}
-              </p>
-              <p>
-                <b>Départ:</b>{" "}
-                {flightData.departure_at &&
-                  new Date(flightData.departure_at).toLocaleDateString()}{" "}
-                {flightData.departure_at &&
-                  new Date(flightData.departure_at).toLocaleTimeString()}
-              </p>
-              <p>
-                <b>Retour:</b>{" "}
-                {flightData.return_at &&
-                  new Date(flightData.return_at).toLocaleDateString()}{" "}
-                {flightData.return_at &&
-                  new Date(flightData.return_at).toLocaleTimeString()}
-              </p>
-              <p>
-                <b>Compagnie aérienne:</b> {flightData.airline}
-              </p>
-              <p>
-                <b>Numéro de vol:</b> {flightData.flight_number}
-              </p>
-              <p>
-                {flightData.price} {currency}
-              </p>
-              <hr />
-            </div>
+            <Card key={flightData.departure_at} className="mb-3">
+              <Card.Body>
+                <Card.Title>{flightData.airline}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                  Numéro de vol: {flightData.flight_number}
+                </Card.Subtitle>
+                <Card.Text>
+                  <p>
+                    <b>Origine:</b> {formData.departureAirport}
+                  </p>
+                  <p>
+                    <b>Destination:</b> {formData.arrivalAirport}
+                  </p>
+                  <p>
+                    <b>Départ:</b>{" "}
+                    {flightData.departure_at &&
+                      new Date(
+                        flightData.departure_at
+                      ).toLocaleDateString()}{" "}
+                    {flightData.departure_at &&
+                      new Date(flightData.departure_at).toLocaleTimeString()}
+                  </p>
+                  <p>
+                    <b>Retour:</b>{" "}
+                    {flightData.return_at &&
+                      new Date(flightData.return_at).toLocaleDateString()}{" "}
+                    {flightData.return_at &&
+                      new Date(flightData.return_at).toLocaleTimeString()}
+                  </p>
+                  <p>
+                    {flightData.price} {currency}
+                  </p>
+                </Card.Text>
+              </Card.Body>
+            </Card>
           ))
         ) : (
           <div>...</div>

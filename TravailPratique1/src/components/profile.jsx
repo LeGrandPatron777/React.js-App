@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Container, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { FaUser, FaEnvelope, FaBirthdayCake } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaBirthdayCake, FaWallet } from "react-icons/fa";
 import { logoutUser } from "../actions/logoutAction";
 
 const Profile = () => {
@@ -20,7 +20,7 @@ const Profile = () => {
     );
   } else {
     return (
-      <Container className="mt-4">
+      <Container className="mt-4 mb-5">
         <Card>
           <Card.Body>
             <Card.Title>
@@ -39,6 +39,11 @@ const Profile = () => {
               <FaEnvelope className="mr-2" /> <strong>Email :</strong>{" "}
               {currentUser.email}
             </Card.Text>
+            <Card.Text>
+              <FaWallet className="mr-2" /> <strong>Solde :</strong>{" "}
+              {currentUser.sold}
+            </Card.Text>
+
             <Button variant="dark" onClick={handleLogout}>
               Déconnexion
             </Button>

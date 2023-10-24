@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  Button,
+  Card,
+  Alert,
+} from "react-bootstrap";
 import {
   FaHotel,
   FaCalendarCheck,
   FaCalendarTimes,
   FaUsers,
 } from "react-icons/fa";
+import { registerHotelReservation } from "../actions/reservationHotelAction";
 
 const SearchAndDisplayHotel = () => {
   const [formData, setFormData] = useState({
@@ -18,6 +27,8 @@ const SearchAndDisplayHotel = () => {
   });
 
   const [hotels, setHotels] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   const token = "6ccf4da559f0777e5a5c543cd67ca555";
   const currency = "CAD";
@@ -27,10 +38,14 @@ const SearchAndDisplayHotel = () => {
   };
 
   const dispatch = useDispatch();
-  const handleReservation = (flightData) => {
-    //dispatch(setFlightData(flightData));
+  const handleReservation = (hotel) => {
+    dispatch(registerHotelReservation(hotel));
+    setShowAlert(true);
+    setAlertMessage(
+      `Hotel réservé avec succès!\nNom: ${hotel.hotelName}\nLieu: ${hotel.location.name}\n Etoile: ${hotel.stars}\n De : ${formData.checkInDate} à ${formData.checkOutDate}\n Prix total: ${hotel.priceFrom}`
+    );
+    console.log(hotel);
   };
-
   const handleSearch = (e) => {
     e.preventDefault();
     const { location, checkInDate, checkOutDate } = formData;
@@ -113,6 +128,16 @@ const SearchAndDisplayHotel = () => {
           </Button>
         </div>
       </Form>
+      {showAlert && (
+        <Alert
+          variant="success"
+          onClose={() => setShowAlert(false)}
+          dismissible
+        >
+          {alertMessage}
+        </Alert>
+      )}
+
       <div className="mt-4">
         {hotels.length > 0 ? (
           hotels.map((hotel, index) => (

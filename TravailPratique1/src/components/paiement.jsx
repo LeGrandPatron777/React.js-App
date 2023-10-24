@@ -1,10 +1,18 @@
 import React from "react";
 import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Payment = () => {
   const reservations = useSelector((state) => state.user.reservations);
-  console.log("ca vient dans paiement", reservations);
+  console.log("reducer vol", reservations);
+
+  const reservationsHotel = useSelector(
+    (state) => state.user.reservationsHotel
+  );
+  console.log("reducer hotel", reservationsHotel);
+
+  const currentUser = useSelector((state) => state.user.currentUser);
+  console.log("arrive dans paiement", currentUser);
 
   return (
     <Container className="mt-4">
@@ -16,7 +24,7 @@ const Payment = () => {
                 reservations.map((reservation, index) => (
                   <Card key={index} className="mb-3">
                     <Card.Body>
-                      <Card.Title>Réservation {index + 1}</Card.Title>
+                      <Card.Title>Réservation de vol {index + 1}</Card.Title>
                       <Card.Text>
                         <p>
                           <strong>Compagnie aérienne:</strong>{" "}
@@ -60,7 +68,35 @@ const Payment = () => {
                   </Card>
                 ))
               ) : (
-                <p>Vous n'avez pas de réservations.</p>
+                <p>Vous n'avez pas de réservations de vol.</p>
+              )}
+            </div>
+            <div>
+              {reservationsHotel && reservationsHotel.length > 0 ? (
+                reservationsHotel.map((reservationh, index) => (
+                  <Card key={index} className="mb-3">
+                    <Card.Body>
+                      <Card.Title>Réservation d'hôtel {index + 1}</Card.Title>
+                      <Card.Text>
+                        <p>
+                          <strong>Nom de l'hôtel:</strong>{" "}
+                          {reservationh.hotelName}
+                        </p>
+                        <p>
+                          <strong>Ville:</strong> {reservationh.location.name}
+                        </p>
+                        <p>
+                          <strong>Pays:</strong> {reservationh.location.country}
+                        </p>
+                        <p>
+                          <strong>Prix total:</strong> {reservationh.priceFrom}
+                        </p>
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                ))
+              ) : (
+                <p>Vous n'avez pas de réservations d'hôtel.</p>
               )}
             </div>
           </Col>

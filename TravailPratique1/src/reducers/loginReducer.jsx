@@ -4,11 +4,13 @@ import {
   LOGOUT_USER,
   UPDATE_CURRENT_USER,
   REGISTER_RESERVATION,
+  REGISTER_RESERVATION_HOTEL,
 } from "../actions/actionTypes";
 
 const initialState = {
   users: [],
   reservations: [],
+  reservationsHotel: [],
   currentUser: null,
 };
 
@@ -41,6 +43,11 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         reservations: [...state.reservations, action.payload],
+      };
+    case REGISTER_RESERVATION_HOTEL:
+      return {
+        ...state,
+        reservationsHotel: [...state.reservationsHotel, action.payload],
       };
     default:
       return state;

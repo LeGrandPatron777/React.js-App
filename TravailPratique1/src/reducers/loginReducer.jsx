@@ -5,6 +5,8 @@ import {
   UPDATE_CURRENT_USER,
   REGISTER_RESERVATION,
   REGISTER_RESERVATION_HOTEL,
+  OUT_RESERVATION,
+  OUT_RESERVATION_HOTEL,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -48,6 +50,16 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         reservationsHotel: [...state.reservationsHotel, action.payload],
+      };
+    case OUT_RESERVATION:
+      return {
+        ...state,
+        reservations: [],
+      };
+    case OUT_RESERVATION_HOTEL:
+      return {
+        ...state,
+        reservationsHotel: [],
       };
     case "UPDATE_USER_BALANCE":
       if (state.currentUser.id === action.payload.userId) {

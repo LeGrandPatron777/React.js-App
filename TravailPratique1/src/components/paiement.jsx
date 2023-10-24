@@ -11,6 +11,8 @@ import {
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { updateUserBalance } from "../actions/updateBalanceAction";
+import { OutReservation } from "../actions/outReservationAction";
+import { OutReservationHotel } from "../actions/outReservationHotel";
 
 const Payment = () => {
   const dispatch = useDispatch();
@@ -50,6 +52,11 @@ const Payment = () => {
 
       // Supprimer les réservations du state
       // ... (code pour supprimer les réservations)
+      dispatch(OutReservation());
+      console.log(reservations);
+
+      dispatch(OutReservationHotel());
+      console.log(reservationsHotel);
 
       setMessage("Paiement réussi");
     } catch (error) {
@@ -200,13 +207,14 @@ const Payment = () => {
             <p>
               <strong>Total à payer:</strong> {totalPrix()} $
             </p>
-            {message && <p className="text-danger mt-3">{message}</p>}
+
             <Button variant="dark" onClick={handlePayment}>
               Payer
             </Button>
           </>
         )}
       </Form>
+      {message && <p className="text-danger mt-3">{message}</p>}
     </Container>
   );
 };

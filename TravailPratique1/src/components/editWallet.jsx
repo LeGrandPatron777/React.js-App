@@ -1,34 +1,26 @@
-// fichier UpdateProfile.jsx
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Form, Button, Container, Alert } from "react-bootstrap";
-import { updateCurrentUser } from "../actions/updateActions";
 import { FaPiggyBank, FaPlusCircle } from "react-icons/fa";
+import { updateUserBalance } from "../actions/updateBalanceAction";
 
 const EditWallet = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
 
-  const [formData, setFormData] = useState({
-    nom: currentUser ? currentUser.nom : "",
-    prenom: currentUser ? currentUser.prenom : "",
-    dateDeNaissance: currentUser ? currentUser.dateDeNaissance : "",
-    email: currentUser ? currentUser.email : "",
-    sold: currentUser ? currentUser.sold : "",
-    password: currentUser ? currentUser.password : "",
-  });
-
-  const { nom, prenom, dateDeNaissance, email, sold, password } = formData;
-
+  const [sold, setSold] = useState("");
+  const [newSold, setNewSold] = useState(0);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { value } = e.target;
+    setSold(value);
+    setNewSold(currentUser.sold + parseFloat(value));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateCurrentUser(formData));
+    dispatch(updateUserBalance(currentUser.id, newSold));
     setShowSuccessMessage(true);
     setTimeout(() => {
       setShowSuccessMessage(false);
@@ -38,15 +30,15 @@ const EditWallet = () => {
   if (!currentUser) {
     return (
       <Container className="mt-4">
-        <p>Veuillez vous connecter pour voir votre Solde</p>
+        <p>Veuillez vous connecter pour voir votre solde</p>
       </Container>
     );
   } else {
     return (
-      <Container className="mt-4 ">
+      <Container className="mt-4">
         <h1 className="text-center mb-4">
-          <FaPiggyBank className="mr-6" />
-          Alimenter votre Solde
+          <FaPiggyBank className="mr-2" />
+          Alimenter votre solde
         </h1>
         {showSuccessMessage && (
           <Alert variant="success">
@@ -56,7 +48,7 @@ const EditWallet = () => {
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mt-2" controlId="formSold">
             <Form.Label>
-              <FaPiggyBank className="mr-6" />
+              <FaPiggyBank className="mr-2" />
               Solde
             </Form.Label>
             <Form.Control
@@ -67,8 +59,7 @@ const EditWallet = () => {
               required
             />
           </Form.Group>
-
-          <Button className="mt-6" variant="dark" type="submit">
+          <Button className="mt-2" variant="dark" type="submit">
             <FaPlusCircle className="mr-2" />
             Alimenter
           </Button>

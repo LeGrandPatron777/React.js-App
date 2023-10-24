@@ -9,8 +9,11 @@ import {
   CardBody,
 } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { updateUserBalance } from "../actions/updateBalanceAction";
 
 const Payment = () => {
+  const dispatch = useDispatch();
   const [message, setMessage] = useState("");
   const reservations = useSelector((state) => state.user.reservations);
   const reservationsHotel = useSelector(
@@ -31,7 +34,27 @@ const Payment = () => {
       return;
     }
 
-    // Ajoutez ici le code pour traiter le paiement
+    try {
+      const newSold = currentUser.sold - total;
+      dispatch(updateUserBalance(currentUser.id, newSold));
+
+      // Enregistrer l'opération dans l'historique des paiements
+      const historyEntry = {
+        userId: currentUser.id,
+        amount: total,
+        date: new Date().toISOString(),
+        type: "payment",
+        // autres informations nécessaires
+      };
+      // ... (code pour enregistrer l'entrée d'historique)
+
+      // Supprimer les réservations du state
+      // ... (code pour supprimer les réservations)
+
+      setMessage("Paiement réussi");
+    } catch (error) {
+      setMessage("Une erreur s'est produite lors du paiement");
+    }
   };
 
   useEffect(() => {

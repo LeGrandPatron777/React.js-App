@@ -49,6 +49,17 @@ const userReducer = (state = initialState, action) => {
         ...state,
         reservationsHotel: [...state.reservationsHotel, action.payload],
       };
+    case "UPDATE_USER_BALANCE":
+      if (state.currentUser.id === action.payload.userId) {
+        return {
+          ...state,
+          currentUser: {
+            ...state.currentUser,
+            sold: action.payload.newBalance,
+          },
+        };
+      }
+      return state;
     default:
       return state;
   }

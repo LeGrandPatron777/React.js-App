@@ -13,7 +13,7 @@ const Registration = () => {
     email: "",
     dateDeNaissance: "",
     password: "",
-    sold: 100,
+    sold: 10000,
     confirmPassword: "",
   });
 

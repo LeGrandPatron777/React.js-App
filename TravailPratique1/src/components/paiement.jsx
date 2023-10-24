@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Container,
+  Row,
+  Col,
+  Card,
+  CardBody,
+} from "react-bootstrap";
 import { useSelector } from "react-redux";
 
 const Payment = () => {
@@ -15,6 +23,14 @@ const Payment = () => {
       setMessage("Veuillez vous connecter pour proceder au paiement");
       return;
     }
+
+    const total = totalPrix();
+
+    if (currentUser.sold < total) {
+      setMessage("Veuillez alimenter votre compte pour proceder au paiement");
+      return;
+    }
+
     // Ajoutez ici le code pour traiter le paiement
   };
 
@@ -50,8 +66,25 @@ const Payment = () => {
 
   return (
     <Container className="mt-4">
-      {message && <p className="text-danger mt-3">{message}</p>}
       <Form>
+        {currentUser && (
+          <Row className="mb-4">
+            <Col md={12}>
+              <Card>
+                <CardBody className="text-center">
+                  {" "}
+                  <p>
+                    <strong>Compte :</strong> {currentUser.nom}{" "}
+                    {currentUser.prenom}
+                  </p>
+                  <p>
+                    <strong>Solde :</strong> {currentUser.sold}
+                  </p>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+        )}
         <Row>
           <Col md={12}>
             <div>
@@ -144,6 +177,7 @@ const Payment = () => {
             <p>
               <strong>Total à payer:</strong> {totalPrix()} $
             </p>
+            {message && <p className="text-danger mt-3">{message}</p>}
             <Button variant="dark" onClick={handlePayment}>
               Payer
             </Button>

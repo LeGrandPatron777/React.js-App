@@ -3,12 +3,23 @@ import { Card, Container, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { FaUser, FaEnvelope, FaBirthdayCake, FaWallet } from "react-icons/fa";
 import { logoutUser } from "../actions/logoutAction";
+import { OutReservation } from "../actions/outReservationAction";
+import { OutReservationHotel } from "../actions/outReservationHotel";
 
 const Profile = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
+  const reservations = useSelector((state) => state.user.reservations);
+  const reservationsHotel = useSelector(
+    (state) => state.user.reservationsHotel
+  );
 
   const handleLogout = () => {
+    // Supprimer les réservations du state
+    dispatch(OutReservation());
+    console.log(reservations);
+    dispatch(OutReservationHotel());
+    console.log(reservationsHotel);
     dispatch(logoutUser());
   };
 

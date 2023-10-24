@@ -7,6 +7,7 @@ import {
   REGISTER_RESERVATION_HOTEL,
   OUT_RESERVATION,
   OUT_RESERVATION_HOTEL,
+  HISTORY,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   reservations: [],
   reservationsHotel: [],
   currentUser: null,
+  history: [],
 };
 
 const userReducer = (state = initialState, action) => {
@@ -22,6 +24,11 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         users: [...state.users, action.payload],
+      };
+    case HISTORY:
+      return {
+        ...state,
+        history: [...state.history, action.payload],
       };
     case SET_CURRENT_USER:
       return {

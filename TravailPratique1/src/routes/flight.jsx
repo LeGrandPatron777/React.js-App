@@ -1,6 +1,5 @@
 import React from "react";
-import SearchFlights from "../components/searchFlights";
-import { Card, Container, ListGroup } from "react-bootstrap";
+import { Card, Container } from "react-bootstrap";
 import SearchAndDisplayFlights from "../components/searchAndDisplayFlights";
 
 const Vue2 = () => {

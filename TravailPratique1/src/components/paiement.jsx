@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { updateUserBalance } from "../actions/updateBalanceAction";
 import { OutReservation } from "../actions/outReservationAction";
 import { OutReservationHotel } from "../actions/outReservationHotel";
+import { History } from "../actions/historyAction";
 
 const Payment = () => {
   const dispatch = useDispatch();
@@ -42,19 +43,29 @@ const Payment = () => {
 
       // Enregistrer l'opération dans l'historique des paiements
       const historyEntry = {
-        userId: currentUser.id,
+        userId: currentUser.nom,
         amount: total,
         date: new Date().toISOString(),
-        type: "payment",
-        // autres informations nécessaires
+        type: "Payment",
+        reservations: reservations.map((reservation) => ({
+          airline: reservation.airline,
+          departureAt: reservation.departure_at,
+          returnAt: reservation.return_at,
+          expiresAt: reservation.expires_at,
+          price: reservation.price,
+          flightNumber: reservation.flight_number,
+        })),
+        reservationsHotel: reservationsHotel.map((reservationh) => ({
+          hotelName: reservationh.hotelName,
+          location: reservationh.location,
+          priceFrom: reservationh.priceFrom,
+        })),
       };
-      // ... (code pour enregistrer l'entrée d'historique)
+      dispatch(History(historyEntry));
 
       // Supprimer les réservations du state
-      // ... (code pour supprimer les réservations)
       dispatch(OutReservation());
       console.log(reservations);
-
       dispatch(OutReservationHotel());
       console.log(reservationsHotel);
 

@@ -7,6 +7,7 @@ import {
   FaHotel,
   FaCreditCard,
   FaUserEdit,
+  FaWallet,
 } from "react-icons/fa";
 
 const NavigationBar = () => {
@@ -30,6 +31,9 @@ const NavigationBar = () => {
           </Nav.Link>
           <Nav.Link as={Link} to="/vue5">
             <FaUserEdit className="mr-1" /> Update
+          </Nav.Link>
+          <Nav.Link as={Link} to="/vue6">
+            <FaWallet className="mr-1" /> Solde
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>

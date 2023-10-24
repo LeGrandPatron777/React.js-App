@@ -51,7 +51,7 @@ const SearchAndDisplayHotel = () => {
     const { location, checkInDate, checkOutDate } = formData;
     axios
       .get(
-        `/api/hotellook/v2/cache.json?location=${location}&checkIn=${checkInDate}&checkOut=${checkOutDate}&currency=${currency}&token=${token}&limit=10`
+        `/api/hotellook/v2/cache.json?location=${location}&checkIn=${checkInDate}&checkOut=${checkOutDate}&currency=${currency}&token=${token}&limit=100`
       )
       .then((res) => {
         setHotels(res.data);

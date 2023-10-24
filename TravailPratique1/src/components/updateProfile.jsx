@@ -8,7 +8,7 @@ import {
   FaUser,
   FaEnvelope,
   FaBirthdayCake,
-  FaWallet,
+  FaLock,
 } from "react-icons/fa";
 
 const UpdateProfile = () => {
@@ -21,9 +21,10 @@ const UpdateProfile = () => {
     dateDeNaissance: currentUser ? currentUser.dateDeNaissance : "",
     email: currentUser ? currentUser.email : "",
     sold: currentUser ? currentUser.sold : "",
+    password: currentUser ? currentUser.password : "",
   });
 
-  const { nom, prenom, dateDeNaissance, email, sold } = formData;
+  const { nom, prenom, dateDeNaissance, email, sold, password } = formData;
 
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
@@ -118,15 +119,16 @@ const UpdateProfile = () => {
             />
           </Form.Group>
 
-          <Form.Group className="mt-2" controlId="formSold">
+          <Form.Group className="mt-2" controlId="formPassword">
             <Form.Label>
-              <FaWallet className="mr-2" />
-              Solde
+              <FaLock className="mr-2" />
+              Mot de passe
             </Form.Label>
             <Form.Control
-              type="number"
-              name="sold"
-              value={sold}
+              type="password"
+              placeholder="Entrez votre mot de passe"
+              name="password"
+              value={password}
               onChange={handleChange}
               required
             />

@@ -6,7 +6,8 @@ import { FaUser, FaEnvelope, FaLock, FaBirthdayCake } from "react-icons/fa";
 
 const Registration = () => {
   const [message, setMessage] = useState("");
-
+  const [messageRed, setMessageRed] = useState("");
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     nom: "",
     prenom: "",
@@ -16,8 +17,6 @@ const Registration = () => {
     sold: 10000,
     confirmPassword: "",
   });
-
-  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -29,35 +28,51 @@ const Registration = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(registerUser(formData));
-    console.log("User registered:", formData);
+    if (formData.password !== formData.confirmPassword) {
+      setMessageRed("Les mots de passe ne correspondent pas !");
+    } else {
+      dispatch(registerUser(formData));
 
-    // Réinitialiser le formulaire apres l'inscription
-    setFormData({
-      nom: "",
-      prenom: "",
-      email: "",
-      dateDeNaissance: "",
-      password: "",
-      confirmPassword: "",
-    });
+      // Réinitialiser le formulaire apres l'inscription
+      setFormData({
+        nom: "",
+        prenom: "",
+        email: "",
+        dateDeNaissance: "",
+        password: "",
+        confirmPassword: "",
+      });
 
-    // Afficher le message de succès apres l'inscription
-    setMessage("Utilisateur créé avec succès !");
+      // Afficher le message de succès apres l'inscription
+      setMessage("Utilisateur créé avec succès !");
+    }
   };
 
   useEffect(() => {
     if (message) {
       const timer = setTimeout(() => {
         setMessage("");
-      }, 5000);
+      }, 3000);
 
       return () => clearTimeout(timer);
     }
   }, [message]);
+  useEffect(() => {
+    if (messageRed) {
+      const timer = setTimeout(() => {
+        setMessageRed("");
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [messageRed]);
 
   return (
     <Row className="justify-content-md-center">
+      {message && <p className="text-success mt-3 text-center">{message}</p>}
+      {messageRed && (
+        <p className="text-danger mt-3 text-center">{messageRed}</p>
+      )}
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label>Nom</Form.Label>
@@ -73,6 +88,7 @@ const Registration = () => {
               value={formData.nom}
               onChange={handleChange}
               placeholder="Entrez votre nom"
+              required
             />
           </div>
         </Form.Group>
@@ -91,6 +107,7 @@ const Registration = () => {
               value={formData.prenom}
               onChange={handleChange}
               placeholder="Entrez votre prénom"
+              required
             />
           </div>
         </Form.Group>
@@ -109,6 +126,7 @@ const Registration = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="exemple@domaine.com"
+              required
             />
           </div>
         </Form.Group>
@@ -126,6 +144,7 @@ const Registration = () => {
               name="dateDeNaissance"
               value={formData.dateDeNaissance}
               onChange={handleChange}
+              required
             />
           </div>
         </Form.Group>
@@ -144,6 +163,7 @@ const Registration = () => {
               value={formData.password}
               onChange={handleChange}
               placeholder="Mot de passe"
+              required
             />
           </div>
         </Form.Group>
@@ -162,6 +182,7 @@ const Registration = () => {
               value={formData.confirmPassword}
               onChange={handleChange}
               placeholder="Confirmez le mot de passe"
+              required
             />
           </div>
         </Form.Group>
@@ -170,7 +191,6 @@ const Registration = () => {
           S'inscrire
         </Button>
       </Form>
-      {message && <p className="text-success mt-3">{message}</p>}
     </Row>
   );
 };

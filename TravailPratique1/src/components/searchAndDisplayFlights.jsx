@@ -50,7 +50,6 @@ const SearchAndDisplayFlights = () => {
     setAlertMessage(
       `Vol réservé avec succès!\n\nCompagnie aérienne: ${flightData.airline}\nNuméro de vol: ${flightData.flight_number}\nPrix: ${flightData.price}\nOrigine: ${formData.departureAirport}\nDestination: ${formData.arrivalAirport}`
     );
-    console.log(flightData);
   };
 
   const handleSubmit = (e) => {
@@ -61,7 +60,6 @@ const SearchAndDisplayFlights = () => {
       )
       .then((res) => {
         if (res.data && res.data.data) {
-          console.log("Réponse de l'API: ", res.data);
           setDestinationKey(Object.keys(res.data.data)[0]);
           setFlights(res.data.data);
           if (res.data.currency) {

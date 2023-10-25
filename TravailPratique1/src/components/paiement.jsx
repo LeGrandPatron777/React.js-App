@@ -7,6 +7,7 @@ import {
   Col,
   Card,
   CardBody,
+  Alert,
 } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -18,6 +19,7 @@ import { History } from "../actions/historyAction";
 const Payment = () => {
   const dispatch = useDispatch();
   const [message, setMessage] = useState("");
+  const [messagePay, setMessagePay] = useState("");
   const reservations = useSelector((state) => state.user.reservations);
   const reservationsHotel = useSelector(
     (state) => state.user.reservationsHotel
@@ -65,12 +67,10 @@ const Payment = () => {
 
       // Supprimer les réservations du state
       dispatch(OutReservation());
-      console.log(reservations);
       dispatch(OutReservationHotel());
-      console.log(reservationsHotel);
 
       //Afficher un message de succès
-      setMessage("Paiement réussi");
+      setMessagePay("Paiement réussi");
     } catch (error) {
       setMessage("Une erreur s'est produite lors du paiement");
     }
@@ -227,6 +227,7 @@ const Payment = () => {
         )}
       </Form>
       {message && <p className="text-danger mt-3">{message}</p>}
+      {messagePay && <Alert variant="primary">{messagePay}</Alert>}
     </Container>
   );
 };

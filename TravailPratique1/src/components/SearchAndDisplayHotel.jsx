@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   Container,
   Row,
@@ -29,7 +29,6 @@ const SearchAndDisplayHotel = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const token = "6ccf4da559f0777e5a5c543cd67ca555";
-  const currency = "CAD";
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -42,7 +41,6 @@ const SearchAndDisplayHotel = () => {
     setAlertMessage(
       `Hotel réservé avec succès!\nNom: ${hotel.hotelName}\nLieu: ${hotel.location.name}\n Etoile: ${hotel.stars}\n De : ${formData.checkInDate} à ${formData.checkOutDate}\n Prix total: ${hotel.priceFrom}`
     );
-    console.log(hotel);
   };
 
   const handleSearch = (e) => {
@@ -50,7 +48,7 @@ const SearchAndDisplayHotel = () => {
     const { location, checkInDate, checkOutDate } = formData;
     axios
       .get(
-        `/api/hotellook/v2/cache.json?location=${location}&checkIn=${checkInDate}&checkOut=${checkOutDate}&currency=${currency}&token=${token}&limit=100`
+        `/api/hotellook/v2/cache.json?location=${location}&checkIn=${checkInDate}&checkOut=${checkOutDate}&currency=CAD&token=${token}&limit=100`
       )
       .then((res) => {
         setHotels(res.data);

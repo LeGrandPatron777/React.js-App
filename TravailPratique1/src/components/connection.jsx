@@ -21,7 +21,9 @@ const Connection = () => {
     if (user) {
       dispatch(setCurrentUser(user));
     } else {
-      setMessage("Adresse e-mail ou mot de passe incorrect.");
+      setMessage(
+        "Adresse e-mail ou mot de passe incorrect. \n Veuillez ressaisir"
+      );
     }
     setEmail("");
     setPassword("");

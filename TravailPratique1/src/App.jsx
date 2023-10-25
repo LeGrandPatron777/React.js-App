@@ -2,7 +2,7 @@ import React from "react";
 import Vue1 from "./routes/login";
 import Vue2 from "./routes/flight";
 import Vue3 from "./routes/hotel";
-import Vue4 from "./routes/invoice";
+import Vue4 from "./routes/payment";
 import Vue5 from "./routes/update";
 import Vue6 from "./routes/wallet";
 import Vue7 from "./routes/history";
@@ -10,7 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NavigationBar from "./components/navigationBar";
 import Footer from "./components/footer";
-import "./App.css"; // Importez votre fichier CSS ici
+import "./App.css";
 
 function App() {
   return (

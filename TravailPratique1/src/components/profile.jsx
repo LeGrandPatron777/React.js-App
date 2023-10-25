@@ -15,7 +15,7 @@ const Profile = () => {
   );
 
   const handleLogout = () => {
-    // Supprimer les réservations du state
+    // Supprimer les réservations dans le panier du state quand il se deconnecte
     dispatch(OutReservation());
     console.log(reservations);
     dispatch(OutReservationHotel());

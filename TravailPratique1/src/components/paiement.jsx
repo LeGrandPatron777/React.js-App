@@ -69,6 +69,7 @@ const Payment = () => {
       dispatch(OutReservationHotel());
       console.log(reservationsHotel);
 
+      //Afficher un message de succès
       setMessage("Paiement réussi");
     } catch (error) {
       setMessage("Une erreur s'est produite lors du paiement");
@@ -78,10 +79,10 @@ const Payment = () => {
   useEffect(() => {
     if (message) {
       const timer = setTimeout(() => {
-        setMessage(""); // Effacer le message après 3 secondes
+        setMessage("");
       }, 2000);
 
-      return () => clearTimeout(timer); // Effacer le timer si le composant est démonté
+      return () => clearTimeout(timer);
     }
   }, [message]);
 

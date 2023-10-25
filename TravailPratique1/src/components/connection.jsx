@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { Form, Button, Row, Alert } from "react-bootstrap"; // Import de Alert
+import { Form, Button, Row, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "../actions/currentUserActions";
-import { FaEnvelope, FaLock } from "react-icons/fa"; // Import des icônes
+import { FaEnvelope, FaLock } from "react-icons/fa";
 
 const Connection = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const users = useSelector((state) => state.user.users);
 
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.user.users);
 
   const handleSubmit = (event) => {
     event.preventDefault();

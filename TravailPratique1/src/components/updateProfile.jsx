@@ -1,4 +1,3 @@
-// fichier UpdateProfile.jsx
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Form, Button, Container, Alert } from "react-bootstrap";

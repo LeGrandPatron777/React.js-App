@@ -28,14 +28,13 @@ const SearchAndDisplayFlights = () => {
     passengers: 1,
     isBusinessClass: false,
   });
-
   const [flights, setFlights] = useState({});
   const [currency, setCurrency] = useState("");
   const [destinationKey, setDestinationKey] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-
   const token = "6ccf4da559f0777e5a5c543cd67ca555";
+  const dispatch = useDispatch();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -44,8 +43,6 @@ const SearchAndDisplayFlights = () => {
       [name]: value,
     }));
   };
-
-  const dispatch = useDispatch();
 
   const handleReservation = (flightData) => {
     dispatch(registerReservation(flightData));

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
+import { Form, Button, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../actions/loginActions";
 import { FaUser, FaEnvelope, FaLock, FaBirthdayCake } from "react-icons/fa";
@@ -32,7 +32,7 @@ const Registration = () => {
     dispatch(registerUser(formData));
     console.log("User registered:", formData);
 
-    // Réinitialiser formData
+    // Réinitialiser le formulaire apres l'inscription
     setFormData({
       nom: "",
       prenom: "",
@@ -42,17 +42,17 @@ const Registration = () => {
       confirmPassword: "",
     });
 
-    // Afficher le message de succès
+    // Afficher le message de succès apres l'inscription
     setMessage("Utilisateur créé avec succès !");
   };
 
   useEffect(() => {
     if (message) {
       const timer = setTimeout(() => {
-        setMessage(""); // Effacer le message après 3 secondes
+        setMessage("");
       }, 5000);
 
-      return () => clearTimeout(timer); // Effacer le timer si le composant est démonté
+      return () => clearTimeout(timer);
     }
   }, [message]);
 

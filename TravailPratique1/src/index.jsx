@@ -5,17 +5,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import App from "./App";
 import thunk from "redux-thunk";
 
-// Import User Reducer
-import userReducer from "./reducers/loginReducer";
+// importer le reducer
+import userReducer from "./reducers/Reducer";
 
-// Another Reducer
-const anotherInitialState = {};
-const anotherReducer = (state = anotherInitialState, action) => state;
-
-// Combine reducers
+// Combiner les reducers au cas ou j'aurai eu un autre reducer
 const rootReducer = combineReducers({
   user: userReducer,
-  another: anotherReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -24,7 +19,7 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunk))
 );
 
-// Render the app
+// Render App
 const root = createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>

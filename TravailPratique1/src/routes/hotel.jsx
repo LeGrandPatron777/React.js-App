@@ -1,7 +1,5 @@
 import React from "react";
-import SearchHotel from "../components/searchHotel";
 import { Card, Container } from "react-bootstrap";
-import HotelInfo from "../components/hotelinfo";
 import SearchAndDisplayHotel from "../components/SearchAndDisplayHotel";
 
 const Vue3 = () => {

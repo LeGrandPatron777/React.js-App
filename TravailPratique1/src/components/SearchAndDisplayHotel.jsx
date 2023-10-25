@@ -25,19 +25,17 @@ const SearchAndDisplayHotel = () => {
     checkOutDate: "",
     numberOfPeople: 1,
   });
-
   const [hotels, setHotels] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-
   const token = "6ccf4da559f0777e5a5c543cd67ca555";
   const currency = "CAD";
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const dispatch = useDispatch();
   const handleReservation = (hotel) => {
     dispatch(registerHotelReservation(hotel));
     setShowAlert(true);
@@ -46,6 +44,7 @@ const SearchAndDisplayHotel = () => {
     );
     console.log(hotel);
   };
+
   const handleSearch = (e) => {
     e.preventDefault();
     const { location, checkInDate, checkOutDate } = formData;
@@ -76,6 +75,7 @@ const SearchAndDisplayHotel = () => {
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
           </Col>
@@ -89,6 +89,7 @@ const SearchAndDisplayHotel = () => {
                 name="checkInDate"
                 value={formData.checkInDate}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
           </Col>
@@ -102,6 +103,7 @@ const SearchAndDisplayHotel = () => {
                 name="checkOutDate"
                 value={formData.checkOutDate}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
           </Col>
@@ -159,7 +161,7 @@ const SearchAndDisplayHotel = () => {
             </Card>
           ))
         ) : (
-          <div>...</div>
+          <div></div>
         )}
       </div>
     </Container>

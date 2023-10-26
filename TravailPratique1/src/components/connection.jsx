@@ -46,6 +46,7 @@ const Connection = () => {
               placeholder="exemple@domaine.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="border-dark"
             />
           </div>
         </Form.Group>
@@ -62,6 +63,7 @@ const Connection = () => {
               placeholder="Mot de passe"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="border-dark"
             />
           </div>
         </Form.Group>

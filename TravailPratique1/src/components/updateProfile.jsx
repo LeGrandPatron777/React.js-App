@@ -71,6 +71,7 @@ const UpdateProfile = () => {
               value={nom}
               onChange={handleChange}
               required
+              className="border-dark"
             />
           </Form.Group>
 
@@ -86,6 +87,7 @@ const UpdateProfile = () => {
               value={prenom}
               onChange={handleChange}
               required
+              className="border-dark"
             />
           </Form.Group>
 
@@ -100,6 +102,7 @@ const UpdateProfile = () => {
               value={dateDeNaissance}
               onChange={handleChange}
               required
+              className="border-dark"
             />
           </Form.Group>
 
@@ -115,6 +118,7 @@ const UpdateProfile = () => {
               value={email}
               onChange={handleChange}
               required
+              className="border-dark"
             />
           </Form.Group>
 
@@ -130,6 +134,7 @@ const UpdateProfile = () => {
               value={password}
               onChange={handleChange}
               required
+              className="border-dark"
             />
           </Form.Group>
 

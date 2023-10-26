@@ -112,9 +112,8 @@ const Payment = () => {
         {currentUser && (
           <Row className="mb-4">
             <Col md={12}>
-              <Card>
+              <Card className="border-dark bg-dark text-white" expand="lg">
                 <CardBody className="text-center">
-                  {" "}
                   <p>
                     <strong>Compte :</strong> {currentUser.nom}{" "}
                     {currentUser.prenom}
@@ -132,7 +131,7 @@ const Payment = () => {
             <div>
               {reservations && reservations.length > 0
                 ? reservations.map((reservation, index) => (
-                    <Card key={index} className="mb-3">
+                    <Card key={index} className="mb-3 border-dark">
                       <Card.Body>
                         <Card.Title>Réservation de vol {index + 1}</Card.Title>
                         <Card.Text>
@@ -186,7 +185,7 @@ const Payment = () => {
             <div>
               {reservationsHotel && reservationsHotel.length > 0
                 ? reservationsHotel.map((reservationh, index) => (
-                    <Card key={index} className="mb-3">
+                    <Card key={index} className="mb-3 border-dark">
                       <Card.Body>
                         <Card.Title>Réservation d'hôtel {index + 1}</Card.Title>
                         <Card.Text>

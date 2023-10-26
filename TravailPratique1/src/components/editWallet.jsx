@@ -57,6 +57,7 @@ const EditWallet = () => {
               value={sold}
               onChange={handleChange}
               required
+              className="border-dark"
             />
           </Form.Group>
           <Button className="mt-2" variant="dark" type="submit">

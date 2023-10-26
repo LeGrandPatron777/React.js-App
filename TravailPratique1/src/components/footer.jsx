@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -34,16 +35,24 @@ const Footer = () => {
           <Col md={3}>
             <h5>Suivez-nous</h5>
             <ul>
-              <li>Facebook</li>
-              <li>Twitter</li>
-              <li>Instagram</li>
-              <li>LinkedIn</li>
+              <li>
+                <FaFacebook /> Facebook
+              </li>
+              <li>
+                <FaTwitter /> Twitter
+              </li>
+              <li>
+                <FaInstagram /> Instagram
+              </li>
+              <li>
+                <FaLinkedin /> LinkedIn
+              </li>
             </ul>
           </Col>
         </Row>
         <Row className="mt-4">
           <Col md={12} className="text-center">
-            <p>© 2023 React App. Tous droits réservés.</p>
+            <p>© 2023 SkyLine Inc. Tous droits réservés.</p>
           </Col>
         </Row>
       </Container>

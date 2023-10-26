@@ -23,16 +23,21 @@ const Vue1 = () => {
       {!currentUser && (
         <Row className="mb-4">
           <Col md={6}>
-            <Card className="mb-3">
-              <Card.Header>Connection</Card.Header>
+            <Card className="mb-3 border-dark">
+              <Card.Header className="border-dark">
+                {" "}
+                <strong>Connection</strong>
+              </Card.Header>
               <Card.Body>
                 <Connection />
               </Card.Body>
             </Card>
           </Col>
           <Col md={6}>
-            <Card>
-              <Card.Header>Inscription</Card.Header>
+            <Card className="border-dark">
+              <Card.Header className="border-dark">
+                <strong>Inscription</strong>
+              </Card.Header>
               <Card.Body>
                 <Registration />
               </Card.Body>

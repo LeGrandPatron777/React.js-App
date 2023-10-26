@@ -88,6 +88,7 @@ const SearchAndDisplayFlights = () => {
                 value={formData.departureAirport}
                 onChange={handleInputChange}
                 required
+                className="border-dark"
               />
             </Form.Group>
           </Col>
@@ -102,6 +103,7 @@ const SearchAndDisplayFlights = () => {
                 value={formData.arrivalAirport}
                 onChange={handleInputChange}
                 required
+                className="border-dark"
               />
             </Form.Group>
           </Col>
@@ -119,6 +121,7 @@ const SearchAndDisplayFlights = () => {
                 value={formData.departureDate}
                 onChange={handleInputChange}
                 required
+                className="border-dark"
               />
             </Form.Group>
           </Col>
@@ -133,6 +136,7 @@ const SearchAndDisplayFlights = () => {
                 value={formData.returnDate}
                 onChange={handleInputChange}
                 required
+                className="border-dark"
               />
             </Form.Group>
           </Col>
@@ -151,6 +155,7 @@ const SearchAndDisplayFlights = () => {
                 value={formData.passengers}
                 onChange={handleInputChange}
                 required
+                className="border-dark"
               />
             </Form.Group>
           </Col>
@@ -196,7 +201,7 @@ const SearchAndDisplayFlights = () => {
       <div className="mt-4">
         {destinationKey && flights[destinationKey] ? (
           Object.values(flights[destinationKey]).map((flightData) => (
-            <Card key={flightData.departure_at} className="mb-3">
+            <Card key={flightData.departure_at} className="mb-3 border-dark">
               <Card.Body>
                 <Card.Title>
                   {flightData.airline} - Vol {flightData.flight_number}

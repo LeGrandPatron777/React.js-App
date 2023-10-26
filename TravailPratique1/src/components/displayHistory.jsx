@@ -23,7 +23,7 @@ const DisplayHistory = () => {
                 <th>Date</th>
                 <th>Montant</th>
                 <th>Type</th>
-                <th>Detail</th>
+                <th>Details</th>
               </tr>
             </thead>
             <tbody>

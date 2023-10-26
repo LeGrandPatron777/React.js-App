@@ -5,7 +5,7 @@ import SearchAndDisplayFlights from "../components/searchAndDisplayFlights";
 const Vue2 = () => {
   return (
     <Container className="mt-5">
-      <Card>
+      <Card className="border-dark">
         <Card.Body>
           <SearchAndDisplayFlights />
         </Card.Body>

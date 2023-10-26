@@ -74,6 +74,7 @@ const SearchAndDisplayHotel = () => {
                 value={formData.location}
                 onChange={handleChange}
                 required
+                className="border-dark"
               />
             </Form.Group>
           </Col>
@@ -88,6 +89,7 @@ const SearchAndDisplayHotel = () => {
                 value={formData.checkInDate}
                 onChange={handleChange}
                 required
+                className="border-dark"
               />
             </Form.Group>
           </Col>
@@ -102,6 +104,7 @@ const SearchAndDisplayHotel = () => {
                 value={formData.checkOutDate}
                 onChange={handleChange}
                 required
+                className="border-dark"
               />
             </Form.Group>
           </Col>
@@ -118,6 +121,7 @@ const SearchAndDisplayHotel = () => {
                 min="1"
                 value={formData.numberOfPeople}
                 onChange={handleChange}
+                className="border-dark"
               />
             </Form.Group>
           </Col>
@@ -141,7 +145,7 @@ const SearchAndDisplayHotel = () => {
       <div className="mt-4">
         {hotels.length > 0 ? (
           hotels.map((hotel, index) => (
-            <Card key={index} className="mb-3">
+            <Card key={index} className="mb-3 border-dark">
               <Card.Body>
                 <Card.Title>{hotel.hotelName}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">

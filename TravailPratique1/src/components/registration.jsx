@@ -89,6 +89,7 @@ const Registration = () => {
               onChange={handleChange}
               placeholder="Entrez votre nom"
               required
+              className="border-dark"
             />
           </div>
         </Form.Group>
@@ -108,6 +109,7 @@ const Registration = () => {
               onChange={handleChange}
               placeholder="Entrez votre prénom"
               required
+              className="border-dark"
             />
           </div>
         </Form.Group>
@@ -127,6 +129,7 @@ const Registration = () => {
               onChange={handleChange}
               placeholder="exemple@domaine.com"
               required
+              className="border-dark"
             />
           </div>
         </Form.Group>
@@ -145,6 +148,7 @@ const Registration = () => {
               value={formData.dateDeNaissance}
               onChange={handleChange}
               required
+              className="border-dark"
             />
           </div>
         </Form.Group>
@@ -164,6 +168,7 @@ const Registration = () => {
               onChange={handleChange}
               placeholder="Mot de passe"
               required
+              className="border-dark"
             />
           </div>
         </Form.Group>
@@ -183,6 +188,7 @@ const Registration = () => {
               onChange={handleChange}
               placeholder="Confirmez le mot de passe"
               required
+              className="border-dark"
             />
           </div>
         </Form.Group>

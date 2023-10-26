@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Container, Button } from "react-bootstrap";
+import { Card, Container, Button, CardText } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { FaUser, FaEnvelope, FaBirthdayCake, FaWallet } from "react-icons/fa";
 import { logoutUser } from "../actions/logoutAction";
@@ -30,26 +30,26 @@ const Profile = () => {
   } else {
     return (
       <Container className="mt-4 mb-5">
-        <Card>
+        <Card className="border-dark">
           <Card.Body>
-            <Card.Title>
-              <FaUser className="mr-2" /> <strong>Nom :</strong>{" "}
+            <CardText>
+              <FaUser className="mr-2" /> <strong>Nom :</strong>
               {currentUser.nom}
-            </Card.Title>
+            </CardText>
             <Card.Text>
-              <FaUser className="mr-2" /> <strong>Prénom :</strong>{" "}
+              <FaUser className="mr-2" /> <strong>Prénom :</strong>
               {currentUser.prenom}
             </Card.Text>
             <Card.Text>
-              <FaBirthdayCake className="mr-2" />{" "}
+              <FaBirthdayCake className="mr-2" />
               <strong>Date de Naissance :</strong> {currentUser.dateDeNaissance}
             </Card.Text>
             <Card.Text>
-              <FaEnvelope className="mr-2" /> <strong>Email :</strong>{" "}
+              <FaEnvelope className="mr-2" /> <strong>Email :</strong>
               {currentUser.email}
             </Card.Text>
             <Card.Text>
-              <FaWallet className="mr-2" /> <strong>Solde :</strong>{" "}
+              <FaWallet className="mr-2" /> <strong>Solde :</strong>
               {currentUser.sold}
             </Card.Text>
 

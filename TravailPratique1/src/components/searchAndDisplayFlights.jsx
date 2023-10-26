@@ -48,7 +48,7 @@ const SearchAndDisplayFlights = () => {
     dispatch(registerReservation(flightData));
     setShowAlert(true);
     setAlertMessage(
-      `Vol réservé avec succès!\n\nCompagnie aérienne: ${flightData.airline}\nNuméro de vol: ${flightData.flight_number}\nPrix: ${flightData.price}\nOrigine: ${formData.departureAirport}\nDestination: ${formData.arrivalAirport}`
+      `Vous avez choisi!\n\nCompagnie aérienne: ${flightData.airline}\nNuméro de vol: ${flightData.flight_number}\nPrix: ${flightData.price}\nOrigine: ${formData.departureAirport}\nDestination: ${formData.arrivalAirport}`
     );
   };
 

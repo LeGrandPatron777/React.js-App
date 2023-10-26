@@ -39,7 +39,7 @@ const SearchAndDisplayHotel = () => {
     dispatch(registerHotelReservation(hotel));
     setShowAlert(true);
     setAlertMessage(
-      `Hotel réservé avec succès!\nNom: ${hotel.hotelName}\nLieu: ${hotel.location.name}\n Etoile: ${hotel.stars}\n De : ${formData.checkInDate} à ${formData.checkOutDate}\n Prix total: ${hotel.priceFrom}`
+      `Vous avez choisi!\nNom: ${hotel.hotelName}\nLieu: ${hotel.location.name}\n Etoile: ${hotel.stars}\n De : ${formData.checkInDate} à ${formData.checkOutDate}\n Prix total: ${hotel.priceFrom}`
     );
   };
 
